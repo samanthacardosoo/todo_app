@@ -1,18 +1,18 @@
-function geraPaginaTodo(tarefa) {
+function geraPaginaTodo(tarefas) {
     let cardsTarefas = "";
 
-    function cadaCard(tarefa) {
-        for (let i =0; i<tarefa.length;i++) {
+    function cadaCard(tarefas) {
+        for (let i =0; i<tarefas.length;i++) {
             cardsTarefas+=
       `<div class="card m-5" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${tarefa[i].titulo}</h5>
-                <p class="card-text">${tarefa[i].descricao}</p>
+                <h5 class="card-title">${tarefas[i].titulo}</h5>
+                <p class="card-text">${tarefas[i].descricao}</p>
             </div>
         </div>`   
         } 
     }
-    cadaCard(tarefa)
+    cadaCard(tarefas)
 
     return `<!DOCTYPE html>
         <html lang="pt-br">
@@ -41,7 +41,7 @@ function geraPaginaTodo(tarefa) {
                     </form>
                 </div>
             </div>
-            <div id="todoCard" class="flex">
+            <div id="todoCard" class="d-flex">
                 <!-- Aqui entram os cards de TODO!-->
                 ${cardsTarefas}
         </div>

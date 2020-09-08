@@ -1,26 +1,38 @@
 const geraPaginaTodo = require('../views/template_todo_app');
 
-let tarefa = [{
-	titulo: "Dentista",
-	descricao: "Ir ao dentista amanhã"
-},
-{
-    titulo: "nome da tarefa",
-    descricao: "descricao"
+const db = [{
+    nome: "Lucio",
+    tarefas: [{
+        titulo: "Yoga",
+        descricao: "Yoga segunda e quarta"
+    }]},
+    {nome: "Jussara",
+    tarefas: [{
+        titulo: "Musculação",
+        descricao: "Malhar todo dia"
 }]
+}]
+
 
 module.exports = (app) => {
 
-app.get('/', (req, res) => {
-    res.send(geraPaginaTodo(tarefa));
-})
+    app.get('/', (req, res) => {
+        res.send(geraPaginaTodo([]))
+    });
 
-app.get("/testenodemon", (req, res) => {
-    res.send(`
-		<h1>Rota de teste do nodemon</h1>
-	`);
-});
+    app.get('/:nome', (req, res) => {
+        for(let i=0; i<db.length; i++) {
+            if(req.params.nome == db[i].nome) {
+                res.send(geraPaginaTodo(db[i].tarefas))
+            }
+        }
+    });
 
+    app.get("/testenodemon", (req, res) => {
+        res.send(`
+            <h1>Rota de teste do nodemon</h1>
+        `);
+    });
 }
 
 
