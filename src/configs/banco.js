@@ -1,8 +1,16 @@
-const geraPaginaTodo = require('./views/template_todo_app');
 const sqlite = require('sqlite3').verbose();
-const dbDados = new sqlite.Database('./db_todo.db'); 
+const banco = new sqlite.Database('./src/configs/todo_db.db'); 
 
-dbDados.serialize(() => {
+process.on('SIGINT', () =>
+    bd.close(() => {
+      console.log('Banco encerrado');
+      process.exit(0);
+    }) 
+);
+
+module.exports = banco;
+
+/* dbDados.serialize(() => {
   dbDados.run('INSERT INTO usuario (id_usuario, nome, senha, email) VALUES (01, "Samantha", 123456, "sassacardosoo@gmail.com")', (err) => {
     if(err) {
       console.log(err.message)
@@ -46,4 +54,4 @@ module.exports = (app) => {
         }
     });
 
-}
+} */
